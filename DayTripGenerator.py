@@ -5,62 +5,58 @@ transportation_list = ['Camel', 'Rolls Royce', 'Moped', 'Taxi', 'Uber']
 restaurant_list = ['Aspen Snowmass', 'The Cliff', 'the Chairtown', 'Buelings', 'Certo']
 entertainment_list = ['Skiing', 'Music festival', 'Go-karting', 'Repository tour', 'Visit Aquarium & underwater zoo'] 
 
-def daytrip(destination_list):
+def destination():
     print('Welcome to DayTrip generator, please use lowercase y or n for all selections.')
-    print(random.choice(destination_list),'will be where you are going, will that work for you?')
-    destination = input ('y/n ')
-    while destination == 'n':
-        print('How does', random.choice(destination_list),'sound y/n')
-        destination = input ('')
-        if destination == 'y':
-            print('Great lets find some transportation for you')
-    return destination
-daytrip(destination_list)
+    rand_dest = random.choice(destination_list)
+    user_input = input(f'Would you like to go to {rand_dest}? y/n ')
+    while user_input != 'y':
+        rand_dest = random.choice(destination_list)
+        user_input = input(f'how about {rand_dest}? y/n ')
+    return rand_dest
+destination()
 
-def transportation(transportation_list):
-    print(random.choice(transportation_list), 'will be your method of travel')
-    transportation = input('Does that option work for you? y/n ')
-    while transportation == 'n':
-        print('How about', random.choice(transportation_list))
-        transportation = input('y/n ')
-        if transportation == 'y':
-            print('Perfect now to get some food')
-    return transportation
-transportation(transportation_list)
+def transportation():
+    rand_transpo = random.choice(transportation_list)
+    user_input = input(f'How would you like to travel by {rand_transpo}? y/n ')
+    while user_input != 'y':
+        rand_transpo = random.choice(transportation_list)
+        user_input = input(f'okay what about {rand_transpo}? y/n ')
+    return rand_transpo
+transportation()
 
-def restaurant(restaurant_list):
-    print(random.choice(restaurant_list), 'Will be where you dine tonight, is that okay with you?')
-    restaurant = input('y/n ')
-    while restaurant == 'n':
-        print("Alright let's try again", random.choice(restaurant_list), 'how about that?')
-        restaurant = input('y/n ')
-        if restaurant == 'y':
-            print('Cool one more step to complete this trip')
-    return restaurant
-restaurant(restaurant_list)
+def restaurant():
+    rand_rest = random.choice(restaurant_list)
+    user_input = input(f'You will be dining at {rand_rest} is that okay? y/n ')
+    while user_input != 'y':
+        rand_rest = random.choice(restaurant_list)
+        user_input = input(f'maybe {rand_rest} is better for you. y/n ')
+    return rand_rest
+restaurant()
 
-def entertainment(entertainment_list):
-    print(random.choice(entertainment_list), 'Will be your entertainment for the night')
-    entertainment = input('will that work for you? y/n ')
-    while entertainment == 'n':
-        print('No worries how about', random.choice(restaurant_list))
-        entertainment = input('y/n ')
-        if entertainment == 'y':
-            print("Great that wraps up this trip for you, let's finalize the details")
-    return entertainment
-entertainment(entertainment_list)
+def entertainment():
+    rand_ent = random.choice(entertainment_list)
+    user_input = input(f'would you like to go to {rand_ent}? y/n ')
+    while user_input != 'y':
+        rand_ent = random.choice(entertainment_list)
+        user_input = input(f'alright maybe this is a better option {rand_ent} y/n')
+    return rand_ent
+entertainment()
    
-def finaltripdetails():
-    finaldest = daytrip(destination_list)
-    finaltranspo = transportation(transportation_list)
-    finalentertainment = entertainment(entertainment_list)
-    finalrestaurant = restaurant(restaurant_list)
-    print('Your trip has been finalized lets confirm the details')
-    print('Your destination is', finaldest, 'your transportation is', finaltranspo, 'your entertainment is', finalentertainment, 'and your meal is from', finalrestaurant)
-    finaltrip = input('Does this work for you? y/n ')
-    if finaltrip == 'y':
-        print('Perfect enjoy your trip')
-    else:
-        print('Alright we can try again')
+def finalize_trip(destination, transportation, entertainment, restaurant):
+    print(f'You will be going to {destination} moving around by {transportation}')
+    print(f"While you are at {destination} , you will be dining at {restaurant} and enjoying {entertainment} ")
+    user_input = input(f"Are you happy with these choices? y/n: ")
+    if user_input == "y":
+        print('Have a great day trip!')
+    elif user_input == 'n':
+        finalize_trip()
+    
+def day_trip():
+    finalize_destination = destination()
+    finalize_transportation = transportation()
+    finalize_entertainment = entertainment()
+    finalize_restaurant = restaurant()
+    finalize_trip(finalize_destination, finalize_transportation, finalize_entertainment, finalize_restaurant)
 
-finaltripdetails()
+day_trip()
+
